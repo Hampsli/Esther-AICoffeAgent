@@ -1,0 +1,42 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: esther-ollama
+    restart: "no"
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+
+  ollama-init:
+    image: ollama/ollama:latest
+    container_name: esther-ollama-init
+    depends_on:
+      - ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    entrypoint: >
+      sh -c "sleep 5 && ollama pull qwen2.5:3b"
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    restart: "no"
+
+  telegram-bot:
+    build: .
+    container_name: esther-bot
+    restart: "no"
+    depends_on:
+      - ollama
+    env_file:
+      - .env
+    volumes:
+      - ./credentials.json:/app/credentials.json
+      - ./token.pickle:/app/token.pickle
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  ollama_data:
