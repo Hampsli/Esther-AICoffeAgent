@@ -1,3 +1,31 @@
+# ── Secretos y credenciales ──────────────────────────────────────────────────
+.env
+credentials.json
+token.pickle
+
+# ── Mac ───────────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ── VS Code ───────────────────────────────────────────────────────────────────
+.vscode/
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
