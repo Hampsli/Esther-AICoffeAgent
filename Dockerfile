@@ -5,6 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY bot.py google_drive.py google_sheets.py ./
+# This copies everything from your local folder into the /app folder in the container
+COPY . .
 
 CMD ["python", "bot.py"]

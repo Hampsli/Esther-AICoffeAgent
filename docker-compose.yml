@@ -16,7 +16,7 @@ services:
     volumes:
       - ollama_data:/root/.ollama
     entrypoint: >
-      sh -c "sleep 5 && ollama pull qwen2.5:3b"
+      sh -c "sleep 5 && ollama pull qwen2.5:1.5b"
     environment:
       - OLLAMA_HOST=http://ollama:11434
     restart: "no"
@@ -32,6 +32,7 @@ services:
     volumes:
       - ./credentials.json:/app/credentials.json
       - ./token.pickle:/app/token.pickle
+      - ./config.json:/app/config.json
     logging:
       driver: "json-file"
       options:
